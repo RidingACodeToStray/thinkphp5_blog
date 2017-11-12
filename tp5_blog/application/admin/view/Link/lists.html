@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>list</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/lib/bootstrap-3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/css/demo.css">
+    <script type="text/javascript" src="__PUBLIC__/static/admin/lib/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/admin/lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/admin/js/demo.js"></script>
+</head>
+
+<body>
+    {include file="Public/header" /}
+    <div class="container-fluid">
+        <div class="row">
+            {include file="Public/sidebar" /}
+            <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
+                <ol class="breadcrumb">
+                    <li><a href="#">首页</a></li>
+                    <li class="active">栏目管理</li>
+                </ol>
+                <div class="result-title">
+                    <div class="result-list">
+                        <a href="{:url('link/add')}"><i class="icon-font"></i>新增链接</a>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>标题</th>
+                                <th>描述</th>
+                                <th>地址</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {volist name="linkres" id="vo"}
+                            <tr>
+                                <td>{$vo.id}</td>
+                                <td>{$vo.title}</td>
+                                <td>{$vo.desc}</td>
+                                <td><a href="{$vo.url}" target="_blank">{$vo.url}</a></td>
+                                <td>
+                                    <a href="{:url('edit',array('id'=>$vo.id))}">修改</a>
+                                    <a href="{:url('del',array('id'=>$vo.id))}" onclick="return confirm('确定删除该栏目？')">删除</a>
+                                </td>
+                            </tr>
+                        {/volist}
+                        </tbody>
+                    </table>
+                    <div>{$linkres->render()}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

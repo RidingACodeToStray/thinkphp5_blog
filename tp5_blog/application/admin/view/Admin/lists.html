@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>list</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/lib/bootstrap-3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/css/demo.css">
+    <script type="text/javascript" src="__PUBLIC__/static/admin/lib/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/admin/lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/admin/js/demo.js"></script>
+</head>
+
+<body>
+    {include file="Public/header" /}
+    <div class="container-fluid">
+        <div class="row">
+            {include file="Public/sidebar" /}
+            <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
+                <ol class="breadcrumb">
+                    <li><a href="#">首页</a></li>
+                    <li class="active">管理员管理</li>
+                </ol>
+                <div class="result-title">
+                    <div class="result-list">
+                        <a href="{:url('admin/add')}"><i class="icon-font"></i>新增管理员</a>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>管理员名称</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {volist name="adminres" id="vo"}
+                            <tr>
+                                <td>{$vo.id}</td>
+                                <td><a href="#" title="{$vo.username}">{$vo.username}</a></td>
+                                <td>
+                                    <a href="{:url('edit',array('id'=>$vo.id))}">修改</a>
+                                    {if condition="$vo.id neq 1"}
+                                    <a href="{:url('del',array('id'=>$vo.id))}" onclick="return confirm('确定删除该管理员？')">删除</a>
+                                    {/if}
+                                </td>
+                            </tr>
+                            {/volist}
+                        </tbody>
+                    </table>
+                    <div>{$adminres->render()}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

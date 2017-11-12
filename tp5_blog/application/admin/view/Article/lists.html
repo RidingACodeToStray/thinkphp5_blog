@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>list</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/lib/bootstrap-3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/css/demo.css">
+    <script type="text/javascript" src="__PUBLIC__/static/admin/lib/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/admin/lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/admin/js/demo.js"></script>
+</head>
+
+<body>
+    {include file="Public/header" /}
+    <div class="container-fluid">
+        <div class="row">
+            {include file="Public/sidebar" /}
+            <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
+                <ol class="breadcrumb">
+                    <li><a href="#">首页</a></li>
+                    <li class="active">文章管理</li>
+                </ol>
+                <div class="result-title">
+                    <div class="result-list">
+                        <a href="{:url('article/add')}"><i class="icon-font"></i>新增文章</a>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>文章标题</th>
+                                <th>略缩图</th>
+                                <th>点击量</th>
+                                <th>栏目</th>
+                                <th>发布时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {volist name="artres" id="vo"}
+                        	<tr>
+                            <th>{$vo.artid}</th>
+                            <th>{$vo.title}</th>
+                            <th>
+								{if condition="$vo['pic'] neq ''"}
+								<img src="__PUBLIC__{$vo.pic}" height="50">
+								{else /} 
+								暂无缩略图
+								{/if}
+                            </th>
+                            <th>{$vo.click}</th>
+                            <th>{$vo.catename}</th>
+                            <th>{$vo.time | date="Y-m-d",###}</th>
+                            <th>
+                                <a class="link-update" href="{:url('edit',array('id'=>$vo.artid))}">修改</a>
+                                <a class="lin-del" href="{:url('del',array('id'=>$vo.artid))}" onclick="return confirm('你确定要删除这篇文章吗？');">删除</a>
+                            </th>
+                            </tr>
+                          {/volist}
+                        </tbody>
+                    </table>
+                    <div>{$artres->render()}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

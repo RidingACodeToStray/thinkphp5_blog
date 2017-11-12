@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Search</title>
+	{include file="Public/resource" /}
+</head>
+<body>
+	{include file="Public/header" /}
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+          <div class="post single-post cate0 auth0">
+          <h4 class="post-date"></h4>
+          <h2 class="post-title">关键词:{$keywords}</h2>
+          <div class="post-body"> 
+         
+          {if condition="$seares neq ' '"}
+          {volist name="seares" id="vo"}
+          <div>
+            <br/><font size="+0.5"><a target="_blank" href="{:url('article/index',array('artid'=>$vo['artid']))}">题目：{$vo.title}</a></font>
+            <br/>描述：{$vo.desc}
+            <br/>
+            <br/>
+          </div>
+          {/volist}
+          {else/}
+          没有搜索结果！
+          {/if}
+        </div>
+        </div>
+      </div>
+    </div>
+    {include file="Public/footer" /}
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Article</title>
+    {include file="Public/resource" /}
+</head>
+
+<body>
+    {include file="Public/header" /}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                <div class="post single-post cate2 auth1">
+                    <div class="post-nav">
+                        {if condition="$prev eq ''"}
+                        <a class="l" href="javascritp:void(0);">上一篇没有了</a> {else/}
+                        <a class="l" href="{:url('article/index',array('artid'=>$prev))}">上一篇 »</a> {/if} {if condition="$next eq ''"}
+                        <a class="r" href="javascritp:void(0);" style="float: right;">下一篇没有了</a> {else/}
+                        <a class="r" href="{:url('article/index',array('artid'=>$next))}" style="float: right;">下一篇 »</a> {/if}
+                    </div>
+                    <h4 class="post-date">{$arts.time|date="Y-m-d H:i:s",###}</h4>
+                    <h2 class="post-title">{$arts.title}</h2> {if condition="$arts['pic'] neq ''"}
+                    <img src="__PUBLIC__{$arts.pic}" /></a>
+                    </p>
+                    {/if}
+                    <div class="post-body">
+                        {$arts.content}
+                    </div>
+                    <h5 class="post-tags">Tags: 
+                      <span class="tags">
+                      <?php
+                        $arr=explode(',', $arts['keywords']);
+                        foreach ($arr as $k => $v) {
+                          echo "<a href='http://localhost/test/tp5/Public/index.php/index/Tags/index/tags/$v'>$v</a>";
+                          echo ' ';
+                        }
+                      ?>
+                    </span>
+                  </h5>
+                  <h6 class="post-footer">
+                    发布:渣渣 | 分类:{$arts.catename} | 评论:5 | 浏览:<span id="spn75">{$arts.click}</span>
+                  </h6>
+                </div>
+            </div>
+            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+              <div class="sidebar-module sidebar-module-inset">
+                  <h4>文章搜索：</h4>
+                    <form method="post" action="{:url('Search/index')}">
+                    <input type="text" name="keywords" id="edtSearch" size="12" /> 
+                    <input type="submit" value="提交" id="btnPost" />
+                  </form>
+                  <h4>相关文章：</h4>
+                  <ol class="list-unstyled">
+                    <li class="msgarticle">
+                        {volist name="ralateres" id="vo"}
+                        <p><a  href="{:url('article/index',array('artid'=>$vo[0]))}">{$vo.1}</a>&nbsp;&nbsp;({$vo.2|date="Y-m-d H:i:s",###})</p>
+                        {/volist}
+                      </li>
+                  </ol>
+              </div>
+          </div>
+        </div>
+    </div>
+    </div>
+    {include file="Public/footer" /}
+</body>
+
+</html>

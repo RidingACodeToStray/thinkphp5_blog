@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>List</title>
+	{include file="Public/resource" /}
+</head>
+<body>
+	{include file="Public/header" /}
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+            {volist name="artres" id="vo"}
+            <div class="post multi-post cate2 auth1">
+            <h4 class="post-date">{$vo.time|date="Y年m月d日",###}</h4>
+            <h2 class="post-title"><a href="{:url('Article/index',array('artid'=>$vo['artid']))}">{$vo.title}</a></h2>
+            <div class="post-body"><p>描述：{$vo.desc}</p>
+            {if condition="$vo['pic'] neq ''"}  
+            <p style="text-indent: 0em;"><a title="2016年就一个字：戒！" target="_self" href="{:url('Article/index',array('artid'=>$vo['artid']))}"><img src="__PUBLIC__{$vo.pic}" title="你我网" alt="你我网"/></a></p>
+            {/if}
+            </div>
+
+            <h5 class="post-tags">Tags: <span class="tags">
+            <?php
+              $arr=explode(',', $vo['keywords']);
+              foreach ($arr as $k => $v) {
+                echo "<a href='http://localhost/test/tp5/Public/index.php/index/Tags/index/tags/$v'>$v</a>";
+                echo ' ';
+              }
+            ?>
+            </span></h5>
+            <h6 class="post-footer">
+              发布:渣渣 | 分类:{$vo.catename} | 评论:666 | 浏览:{$vo.click} | <a href="{:url('Article/index',array('artid'=>$vo['artid']))}">阅读全文 > </a>
+          </h6>
+        </div>
+      {/volist}
+      <div class="post pagebar">{$artres->render()}</div>
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+              <div class="sidebar-module sidebar-module-inset">
+                  <h4>文章搜索：</h4>
+                    <form method="post" action="{:url('Search/index')}">
+                    <input type="text" name="keywords" id="edtSearch" size="12" /> 
+                    <input type="submit" value="提交" id="btnPost" />
+                  </form>
+              </div>
+          </div>
+      </div>
+    </div>
+    {include file="Public/footer" /}
+</body>
+</html>

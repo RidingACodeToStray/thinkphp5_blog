@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Guest</title>
+    {include file="Public/resource" /}
+</head>
+
+<body>
+    {include file="Public/header" /}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                <div id="divMain">
+                    <br>
+                    <ul style="list-style: none;">
+                        {volist name="guestres" id="vo"}
+                        <li>
+                            <div>
+                                <img class="avatar" src="http://cn.gravatar.com/avatar/75e215cea7a9364665ca688b5a23a58a?s=40&d=mm" alt="" width="32" />&nbsp;
+                                <strong>{$vo.nickname}</strong>
+                            </div>
+                            <div style="color: gray;">
+                                <small>&nbsp;发布于&nbsp;{$vo.time|date="Y年m月d日 H:i:s",###}&nbsp;&nbsp;
+                            </div>
+                            <div style="color: orange;font-style: italic;font-weight: bold;">{$vo.content}</div>
+                        </li>
+                        <br>
+                        {/volist}
+                    </ul>
+                    <div class="post" id="divCommentPost">
+                        <p class="posttop"><a name="comment">发表留言:</a></p>
+                        <form id="frmSumbit" target="_self" method="post" action="{:url('guest/index')}">
+                            <input type="hidden" name="inpId" id="inpId" value="2" />
+                            <input type="hidden" name="inpArticle" id="inpArticle" value="" />
+                            <input type="hidden" name="inpRevID" id="inpRevID" value="" />
+                            <p>
+                                <input type="text" name="inpName" id="inpName" class="text" value="" size="28" tabindex="1" />
+                                <label for="inpName">名称（必填）</label>
+                            </p>
+                            <p>
+                                <input type="text" name="inpEmail" id="inpEmail" class="text" value="" size="28" tabindex="2" />
+                                <label for="inpEmail">邮箱</label>
+                            </p>
+                            <p>
+                                <input type="text" name="inpHomePage" id="inpHomePage" class="text" value="" size="28" tabindex="3" />
+                                <label for="inpHomePage">网站链接</label>
+                            </p>
+                            <p>
+                                <label for="txaArticle">正文（必填）(留言最长字数:1000)</label>
+                            </p>
+                            <p>
+                                <textarea name="txaArticle" id="txaArticle" cols="50" rows="4" tabindex="5"></textarea>
+                            </p>
+                            <p>
+                                <input name="btnSumbit" type="submit" tabindex="6" value="提交" class="button" />
+                            </p>
+                        </form>
+                        <p class="postbottom">◎欢迎参与讨论，请在这里发表您的看法、交流您的观点。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {include file="Public/footer" /}
+</body>
+
+</html>

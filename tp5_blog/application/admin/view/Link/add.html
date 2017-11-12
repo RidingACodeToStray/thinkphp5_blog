@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>list</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/lib/bootstrap-3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/css/demo.css">
+    <script type="text/javascript" src="__PUBLIC__/static/admin/lib/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/admin/lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/admin/js/demo.js"></script>
+</head>
+
+<body>
+    {include file="Public/header" /}
+    <div class="container-fluid">
+        <div class="row">
+            {include file="Public/sidebar" /}
+            <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
+                <ol class="breadcrumb">
+                    <li><a href="#">友情链接</a></li>
+                    <li><a href="#">链接管理</a></li>
+                    <li class="active">新增链接</li>
+                </ol>
+                <div class="result-wrap">
+                    <div class="result-content">
+                        <form action="" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                            <table class="insert-tab" width="100%">
+                                <tbody>
+                                    <tr>
+                                        <th width="10%">链接名称：</th>
+                                        <td>
+                                            <input class="common-text required" id="title" name="title" size="50" value="" type="text">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>链接地址：</th>
+                                        <td>
+                                            <input class="common-text" name="url" size="50" value="" type="text">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>链接描述：</th>
+                                        <td>
+                                            <textarea name="desc" class="common-textarea" id="desc" cols="30" style="width: 98%;" rows="10"></textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <td>
+                                            <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                            <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

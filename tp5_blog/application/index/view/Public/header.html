@@ -1,0 +1,16 @@
+<div class="blog-masthead">
+    <div class="container">
+        <nav class="blog-nav">
+        	<a class="blog-nav-item" href="{:url('Index/index')}">首页</a>
+            {volist name="navres" id="vo"}
+            <a class="blog-nav-item" href="
+			{if condition="$vo['type'] eq 0"}
+			{:url('lists/index',array('cateid'=>$vo['ID']))}
+			{else /}
+			{:url('guest/index',array('cateid'=>$vo['ID']))}
+			{/if}
+			">{$vo.catename}</a>
+			{/volist}
+        </nav>
+    </div>
+</div>

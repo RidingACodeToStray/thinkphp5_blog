@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>list</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/lib/bootstrap-3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/admin/css/demo.css">
+    <script type="text/javascript" src="__PUBLIC__/static/admin/lib/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/admin/lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/admin/js/demo.js"></script>
+</head>
+<body>
+    {include file="Public/header" /}
+    <div class="container-fluid">
+        <div class="row">
+            {include file="Public/sidebar" /}
+            <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
+                <ol class="breadcrumb">
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">栏目管理</a></li>
+                    <li class="active">栏目修改</li>
+                </ol>
+                <div class="result-wrap">
+                    <div class="result-content">
+                        <form action="" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                        <!-- ID在数据表中是主键，在form表单中新建一个隐藏的input文本框用于接收和存储栏目的ID，当点击提交时需要用此ID值对该栏目在数据库中的数据进行更新 -->
+                            <input type="hidden" name="id" value="{$cates.ID}">
+                            <table class="insert-tab" width="100%">
+                                <tbody>
+                                    <tr>
+                                        <th width="10%">栏目名称：</th>
+                                        <td>
+                                            <input class="common-text required" id="catename" name="catename" size="50" value="{$cates.catename}" type="text">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>关键词：</th>
+                                        <td>
+                                            <input class="common-text" name="keywords" size="50" value="{$cates.keywords}" type="text">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>栏目类型：</th>
+                                        <td>
+                                        <!-- 使用If条件判断对栏目类型进行判断 -->
+                                            <input name="type" value="1" type="checkbox" {if condition="$cates.type eq 1"}checked='checked' {/if} /> 留言板</td>
+                                    </tr>
+                                    <tr>
+                                        <th>内容：</th>
+                                        <td>
+                                            <textarea name="desc" class="common-textarea" id="desc" cols="30" style="width: 98%;" rows="10">{$cates.desc}</textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <td>
+                                            <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                            <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
